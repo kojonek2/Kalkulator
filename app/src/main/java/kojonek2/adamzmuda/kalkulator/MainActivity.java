@@ -52,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_9:
                 textView.setText(textView.getText().equals("0") ? "9" : textView.getText() + "9");
                 break;
+            case R.id.button_backspace:
+                textView.setText(textView.getText().length() > 1 &&(textView.getText().length() > 2 || !textView.getText().toString().substring(0, 1).equals("-")) ? textView.getText().toString().substring(0, textView.getText().length() - 1) : "0");
+                break;
+            case R.id.button_c:
+                textView.setText("0");
+                break;
+            case R.id.button_changeSign:
+                if(!textView.getText().equals("0")) {
+                    textView.setText(textView.getText().toString().substring(0, 1).equals("-") ? textView.getText().toString().substring(1, textView.getText().length()) : "-" + textView.getText());
+                }
+                break;
         }
     }
 
