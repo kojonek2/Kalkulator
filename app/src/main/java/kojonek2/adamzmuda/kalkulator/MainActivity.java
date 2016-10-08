@@ -7,20 +7,25 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     //constant
-    static final String STATE_NUMBER_LENGTH = "numberOnDisplayLength";
-    static final String STATE_NUMBER = "numberOnDisplay";
-    static final String STATE_FIRST_INPUT = "firstNumberInInput";
-    static final String STATE_MATH_OPERATOR = "mathOperatorChosen";
+    private static final String STATE_NUMBER_LENGTH = "numberOnDisplayLength";
+    private static final String STATE_NUMBER = "numberOnDisplay";
+    private static final String STATE_FIRST_INPUT = "firstNumberInInput";
+    private static final String STATE_MATH_OPERATOR = "mathOperatorChosen";
 
     //variables
-    TextView textView;
-    int numbersOnDisplay;
-    double firstInput;
-    String mathOperatorInput;
-    Toast toast;
+    String resultOfMathOperation;
+    private TextView textView;
+    private int numbersOnDisplay;
+    private double firstInput;
+    private String mathOperatorInput;
+    private Toast toast;
+    DecimalFormat decimalFormat;
 
     @SuppressLint("ShowToast")
     @Override
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.display1);
         toast = Toast.makeText(this, R.string.toastMaxDigits, Toast.LENGTH_SHORT);
+        decimalFormat = new DecimalFormat("#.###############");
 
         //reading information
         if (savedInstanceState != null) {
@@ -170,13 +176,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void mathOperation(String operator) {
+    private void mathOperation(String operator) {
 
-
+    ///DO ZROBIENIA ZEROWANIE IMPUTU PO OPERATORZE TESTOWANIE I INNE oraz ztesty dla ujemnych
         switch (operator) {
             case "+":
                 firstInput = Double.parseDouble(textView.getText().toString());
                 textView.setText("0");
+                numbersOnDisplay = 0;
                 mathOperatorInput = "+";
                 break;
             case "/":
@@ -196,16 +203,24 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "=":
                 if (mathOperatorInput.equals("+")) {
-                    textView.setText(Double.toString(firstInput + Double.parseDouble(textView.getText().toString())));
+                    resultOfMathOperation = decimalFormat.format(firstInput + Double.parseDouble(textView.getText().toString())).replace(",", ".");
+                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+                    textView.setText(resultOfMathOperation);
                 }
                 if (mathOperatorInput.equals("/")) {
-                    textView.setText(Double.toString(firstInput / Double.parseDouble(textView.getText().toString())));
+                    resultOfMathOperation = decimalFormat.format(firstInput / Double.parseDouble(textView.getText().toString())).replace(",", ".");
+                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+                    textView.setText(resultOfMathOperation);
                 }
                 if (mathOperatorInput.equals("*")) {
-                    textView.setText(Double.toString(firstInput * Double.parseDouble(textView.getText().toString())));
+                    resultOfMathOperation = decimalFormat.format(firstInput * Double.parseDouble(textView.getText().toString())).replace(",", ".");
+                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+                    textView.setText(resultOfMathOperation);
                 }
                 if (mathOperatorInput.equals("-")) {
-                    textView.setText(Double.toString(firstInput - Double.parseDouble(textView.getText().toString())));
+                    resultOfMathOperation = decimalFormat.format(firstInput - Double.parseDouble(textView.getText().toString())).replace(",", ".");
+                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+                    textView.setText(resultOfMathOperation);
                 }
                 break;
         }
