@@ -43,7 +43,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_ce"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
         <Button
             android:text="@string/clear"
@@ -66,7 +67,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_divide"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
     </LinearLayout>
 
@@ -108,7 +110,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_multiply"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
     </LinearLayout>
 
@@ -150,7 +153,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_subtract"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
     </LinearLayout>
 
@@ -192,7 +196,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_add"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
     </LinearLayout>
 
@@ -233,7 +238,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_equals"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayNumber"/>
 
     </LinearLayout>
 

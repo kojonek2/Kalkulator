@@ -1,5 +1,6 @@
 package kojonek2.adamzmuda.kalkulator;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     static final String STATE_NUMBER_LENGTH = "numberOnDisplayLength";
     static final String STATE_NUMBER = "numberOnDisplay";
     static final String STATE_FIRST_INPUT = "firstNumberInInput";
-    static final String STATE_MATH_OPERATOR = "mathOperatorChossen";
+    static final String STATE_MATH_OPERATOR = "mathOperatorChosen";
 
     //variables
     TextView textView;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String mathOperatorInput;
     Toast toast;
 
+    @SuppressLint("ShowToast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
             mathOperatorInput = savedInstanceState.getString(STATE_MATH_OPERATOR);
         } else {
 
-            //default ones
             numbersOnDisplay = 0;
+            firstInput = 0;
+            mathOperatorInput = "no operator yet";
         }
     }
 
@@ -147,6 +150,62 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_changeSign:
                 if (!textView.getText().equals("0")) {
                     textView.setText(textView.getText().toString().substring(0, 1).equals("-") ? textView.getText().toString().substring(1, textView.getText().length()) : "-" + textView.getText());
+                }
+                break;
+            case R.id.button_add:
+                mathOperation("+");
+                break;
+            case R.id.button_divide:
+                mathOperation("/");
+                break;
+            case R.id.button_multiply:
+                mathOperation("*");
+                break;
+            case R.id.button_subtract:
+                mathOperation("-");
+                break;
+            case R.id.button_equals:
+                mathOperation("=");
+                break;
+        }
+    }
+
+    public void mathOperation(String operator) {
+
+
+        switch (operator) {
+            case "+":
+                firstInput = Double.parseDouble(textView.getText().toString());
+                textView.setText("0");
+                mathOperatorInput = "+";
+                break;
+            case "/":
+                firstInput = Double.parseDouble(textView.getText().toString());
+                textView.setText("0");
+                mathOperatorInput = "/";
+                break;
+            case "*":
+                firstInput = Double.parseDouble(textView.getText().toString());
+                textView.setText("0");
+                mathOperatorInput = "*";
+                break;
+            case "-":
+                firstInput = Double.parseDouble(textView.getText().toString());
+                textView.setText("0");
+                mathOperatorInput = "-";
+                break;
+            case "=":
+                if (mathOperatorInput.equals("+")) {
+                    textView.setText(Double.toString(firstInput + Double.parseDouble(textView.getText().toString())));
+                }
+                if (mathOperatorInput.equals("/")) {
+                    textView.setText(Double.toString(firstInput / Double.parseDouble(textView.getText().toString())));
+                }
+                if (mathOperatorInput.equals("*")) {
+                    textView.setText(Double.toString(firstInput * Double.parseDouble(textView.getText().toString())));
+                }
+                if (mathOperatorInput.equals("-")) {
+                    textView.setText(Double.toString(firstInput - Double.parseDouble(textView.getText().toString())));
                 }
                 break;
         }
