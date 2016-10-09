@@ -201,16 +201,88 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.button_add:
-                mathOperation("+");
+                switch (mathLastOperationDone) {
+                    case "=":
+                    case "+":
+                    case "no operator yet":
+                        mathOperation("+");
+                        break;
+                    case "-":
+                        mathOperation("-");
+                        mathOperation("+");
+                        break;
+                    case "/":
+                        mathOperation("/");
+                        mathOperation("+");
+                        break;
+                    case "*":
+                        mathOperation("*");
+                        mathOperation("+");
+                        break;
+                }
                 break;
             case R.id.button_divide:
-                mathOperation("/");
+                switch (mathLastOperationDone) {
+                    case "=":
+                    case "/":
+                    case "no operator yet":
+                        mathOperation("/");
+                        break;
+                    case "-":
+                        mathOperation("-");
+                        mathOperation("/");
+                        break;
+                    case "+":
+                        mathOperation("+");
+                        mathOperation("/");
+                        break;
+                    case "*":
+                        mathOperation("*");
+                        mathOperation("/");
+                        break;
+                }
                 break;
             case R.id.button_multiply:
-                mathOperation("*");
+                switch (mathLastOperationDone) {
+                    case "=":
+                    case "*":
+                    case "no operator yet":
+                        mathOperation("*");
+                        break;
+                    case "-":
+                        mathOperation("-");
+                        mathOperation("*");
+                        break;
+                    case "/":
+                        mathOperation("/");
+                        mathOperation("*");
+                        break;
+                    case "+":
+                        mathOperation("+");
+                        mathOperation("*");
+                        break;
+                }
                 break;
             case R.id.button_subtract:
-                mathOperation("-");
+                switch (mathLastOperationDone) {
+                    case "=":
+                    case "-":
+                    case "no operator yet":
+                        mathOperation("-");
+                        break;
+                    case "+":
+                        mathOperation("+");
+                        mathOperation("-");
+                        break;
+                    case "/":
+                        mathOperation("/");
+                        mathOperation("-");
+                        break;
+                    case "*":
+                        mathOperation("*");
+                        mathOperation("-");
+                        break;
+                }
                 break;
             case R.id.button_equals:
                 if (isInputTyped) {
