@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String STATE_NUMBER = "numberOnDisplay";
     private static final String STATE_FIRST_INPUT = "firstNumberInInput";
     private static final String STATE_MATH_OPERATOR = "mathOperatorChosen";
+    private static final String STATE_MATH_OPERATOR_PRESSED = "mathOperatorPressed";
+    private static final String STATE_IS_INPUT_TYPED = "isInputTypedAfterOperation";
 
     //variables
     String resultOfMathOperation;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(savedInstanceState.getCharSequence(STATE_NUMBER));
             firstInput = savedInstanceState.getDouble(STATE_FIRST_INPUT);
             mathLastOperationDone = savedInstanceState.getString(STATE_MATH_OPERATOR);
+            mathLastOperationPressed = savedInstanceState.getString(STATE_MATH_OPERATOR_PRESSED);
+            isInputTyped = savedInstanceState.getBoolean(STATE_IS_INPUT_TYPED);
         } else {
 
             numbersOnDisplay = 0;
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putCharSequence(STATE_NUMBER, textView.getText());
         savedInstanceState.putDouble(STATE_FIRST_INPUT, firstInput);
         savedInstanceState.putString(STATE_MATH_OPERATOR, mathLastOperationDone);
+        savedInstanceState.putString(STATE_MATH_OPERATOR_PRESSED, mathLastOperationPressed);
+        savedInstanceState.putBoolean(STATE_IS_INPUT_TYPED, isInputTyped);
     }
 
     public void displayNumber(View view) {
@@ -297,7 +304,6 @@ public class MainActivity extends AppCompatActivity {
                 mathLastOperationDone = "no operator yet";
                 mathLastOperationPressed = "no operator yet";
                 break;
-
         }
     }
 
