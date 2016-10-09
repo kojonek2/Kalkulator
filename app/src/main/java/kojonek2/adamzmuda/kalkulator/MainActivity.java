@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.DecimalFormat;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private int numbersOnDisplay;
     private double firstInput;
-    private String mathOperatorInput;
+    private String mathLastOperationDone;
+    String mathLastOperationPressed;
     private Toast toast;
     DecimalFormat decimalFormat;
+    Boolean isInputTyped;
 
     @SuppressLint("ShowToast")
     @Override
@@ -43,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
             numbersOnDisplay = savedInstanceState.getInt(STATE_NUMBER_LENGTH);
             textView.setText(savedInstanceState.getCharSequence(STATE_NUMBER));
             firstInput = savedInstanceState.getDouble(STATE_FIRST_INPUT);
-            mathOperatorInput = savedInstanceState.getString(STATE_MATH_OPERATOR);
+            mathLastOperationDone = savedInstanceState.getString(STATE_MATH_OPERATOR);
         } else {
 
             numbersOnDisplay = 0;
             firstInput = 0;
-            mathOperatorInput = "no operator yet";
+            mathLastOperationDone = "no operator yet";
+            mathLastOperationPressed = "no operator yet";
+            isInputTyped = true;
         }
     }
 
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(STATE_NUMBER_LENGTH, numbersOnDisplay);
         savedInstanceState.putCharSequence(STATE_NUMBER, textView.getText());
         savedInstanceState.putDouble(STATE_FIRST_INPUT, firstInput);
-        savedInstanceState.putString(STATE_MATH_OPERATOR, mathOperatorInput);
+        savedInstanceState.putString(STATE_MATH_OPERATOR, mathLastOperationDone);
     }
 
     public void displayNumber(View view) {
@@ -69,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "0" : textView.getText() + "0");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("0");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -77,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "1" : textView.getText() + "1");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("1");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -85,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "2" : textView.getText() + "2");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("2");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -93,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "3" : textView.getText() + "3");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("3");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -101,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "4" : textView.getText() + "4");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("4");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -109,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "5" : textView.getText() + "5");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("5");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -117,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "6" : textView.getText() + "6");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("6");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -125,6 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "7" : textView.getText() + "7");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("7");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -133,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "8" : textView.getText() + "8");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("8");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -141,6 +179,10 @@ public class MainActivity extends AppCompatActivity {
                 if (numbersOnDisplay < 15) {
                     textView.setText(textView.getText().equals("0") ? "9" : textView.getText() + "9");
                     numbersOnDisplay++;
+                    if (!isInputTyped) {
+                        textView.setText("9");
+                    }
+                    isInputTyped = true;
                 } else {
                     toast.show();
                 }
@@ -171,56 +213,93 @@ public class MainActivity extends AppCompatActivity {
                 mathOperation("-");
                 break;
             case R.id.button_equals:
-                mathOperation("=");
+                if (isInputTyped) {
+                    mathOperatorEquals(mathLastOperationPressed, true);
+                }
                 break;
+        }
+    }
+
+    private void mathOperatorEquals(String operator, Boolean isPressedButtonEquals) {
+
+        if (operator.equals("+")) {
+            resultOfMathOperation = decimalFormat.format(firstInput + Double.parseDouble(textView.getText().toString())).replace(",", ".");
+            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+            textView.setText(resultOfMathOperation);
+            isInputTyped = false;
+        }
+        if (operator.equals("/")) {
+            resultOfMathOperation = decimalFormat.format(firstInput / Double.parseDouble(textView.getText().toString())).replace(",", ".");
+            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+            textView.setText(resultOfMathOperation);
+            isInputTyped = false;
+        }
+        if (operator.equals("*")) {
+            resultOfMathOperation = decimalFormat.format(firstInput * Double.parseDouble(textView.getText().toString())).replace(",", ".");
+            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+            textView.setText(resultOfMathOperation);
+            isInputTyped = false;
+        }
+        if (operator.equals("-")) {
+            resultOfMathOperation = decimalFormat.format(firstInput - Double.parseDouble(textView.getText().toString())).replace(",", ".");
+            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+            textView.setText(resultOfMathOperation);
+            isInputTyped = false;
+        }
+        if (isPressedButtonEquals) {
+            mathLastOperationDone = "=";
         }
     }
 
     private void mathOperation(String operator) {
 
-    ///DO ZROBIENIA ZEROWANIE IMPUTU PO OPERATORZE TESTOWANIE I INNE oraz ztesty dla ujemnych
         switch (operator) {
             case "+":
-                firstInput = Double.parseDouble(textView.getText().toString());
-                textView.setText("0");
-                numbersOnDisplay = 0;
-                mathOperatorInput = "+";
+                if (!mathLastOperationDone.equals("+")) {
+                    firstInput = Double.parseDouble(textView.getText().toString());
+                    textView.setText("0");
+                    numbersOnDisplay = 0;
+                    mathLastOperationDone = "+";
+                    mathLastOperationPressed = "+";
+                    mathOperatorEquals("+", false);
+                } else if (isInputTyped) {
+                    mathOperatorEquals("+", true);
+                }
                 break;
             case "/":
-                firstInput = Double.parseDouble(textView.getText().toString());
-                textView.setText("0");
-                mathOperatorInput = "/";
+                if (!mathLastOperationDone.equals("/")) {
+                    firstInput = Double.parseDouble(textView.getText().toString());
+                    textView.setText("1");
+                    numbersOnDisplay = 0;
+                    mathLastOperationDone = "/";
+                    mathLastOperationPressed = "/";
+                    mathOperatorEquals("/", false);
+                } else if (isInputTyped) {
+                    mathOperatorEquals("/", true);
+                }
                 break;
             case "*":
-                firstInput = Double.parseDouble(textView.getText().toString());
-                textView.setText("0");
-                mathOperatorInput = "*";
+                if (!mathLastOperationDone.equals("*")) {
+                    firstInput = Double.parseDouble(textView.getText().toString());
+                    textView.setText("1");
+                    numbersOnDisplay = 0;
+                    mathLastOperationDone = "*";
+                    mathLastOperationPressed = "*";
+                    mathOperatorEquals("*", false);
+                } else if (isInputTyped) {
+                    mathOperatorEquals("*", true);
+                }
                 break;
             case "-":
-                firstInput = Double.parseDouble(textView.getText().toString());
-                textView.setText("0");
-                mathOperatorInput = "-";
-                break;
-            case "=":
-                if (mathOperatorInput.equals("+")) {
-                    resultOfMathOperation = decimalFormat.format(firstInput + Double.parseDouble(textView.getText().toString())).replace(",", ".");
-                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-                    textView.setText(resultOfMathOperation);
-                }
-                if (mathOperatorInput.equals("/")) {
-                    resultOfMathOperation = decimalFormat.format(firstInput / Double.parseDouble(textView.getText().toString())).replace(",", ".");
-                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-                    textView.setText(resultOfMathOperation);
-                }
-                if (mathOperatorInput.equals("*")) {
-                    resultOfMathOperation = decimalFormat.format(firstInput * Double.parseDouble(textView.getText().toString())).replace(",", ".");
-                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-                    textView.setText(resultOfMathOperation);
-                }
-                if (mathOperatorInput.equals("-")) {
-                    resultOfMathOperation = decimalFormat.format(firstInput - Double.parseDouble(textView.getText().toString())).replace(",", ".");
-                    resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-                    textView.setText(resultOfMathOperation);
+                if (!mathLastOperationDone.equals("-")) {
+                    firstInput = Double.parseDouble(textView.getText().toString());
+                    textView.setText("0");
+                    numbersOnDisplay = 0;
+                    mathLastOperationDone = "-";
+                    mathLastOperationPressed = "-";
+                    mathOperatorEquals("-", false);
+                } else if (isInputTyped) {
+                    mathOperatorEquals("-", true);
                 }
                 break;
         }
