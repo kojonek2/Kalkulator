@@ -289,6 +289,15 @@ public class MainActivity extends AppCompatActivity {
                     mathOperatorEquals(mathLastOperationPressed, true);
                 }
                 break;
+            case R.id.button_ce:
+                textView.setText("0");
+                numbersOnDisplay = 0;
+                isInputTyped = true;
+                firstInput = 0;
+                mathLastOperationDone = "no operator yet";
+                mathLastOperationPressed = "no operator yet";
+                break;
+
         }
     }
 

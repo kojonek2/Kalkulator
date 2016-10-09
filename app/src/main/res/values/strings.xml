@@ -18,7 +18,7 @@
     <string name="_8">8</string>
     <string name="_7">7</string>
     <string name="divide">/</string>
-    <string name="backspace"><![CDATA[<]]></string>
+    <string name="backspace"><![CDATA[<-]]></string>
     <string name="clear">C</string>
     <string name="display">0</string>
     <string name="toastMaxDigits">Maksymalna długośc liczby przekroczona.(15)</string>
