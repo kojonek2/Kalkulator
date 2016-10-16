@@ -72,241 +72,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putBoolean(STATE_IS_INPUT_TYPED, isInputTyped);
     }
 
-    public void displayNumber(View view) {
-        switch (view.getId()) {
-            case R.id.button_0:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "0" : textView.getText() + "0");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("0");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_1:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "1" : textView.getText() + "1");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("1");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_2:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "2" : textView.getText() + "2");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("2");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_3:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "3" : textView.getText() + "3");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("3");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_4:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "4" : textView.getText() + "4");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("4");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_5:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "5" : textView.getText() + "5");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("5");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_6:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "6" : textView.getText() + "6");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("6");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_7:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "7" : textView.getText() + "7");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("7");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_8:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "8" : textView.getText() + "8");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("8");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_9:
-                if (numbersOnDisplay < 15) {
-                    textView.setText(textView.getText().equals("0") ? "9" : textView.getText() + "9");
-                    numbersOnDisplay++;
-                    if (!isInputTyped) {
-                        textView.setText("9");
-                    }
-                    isInputTyped = true;
-                } else {
-                    toast.show();
-                }
-                break;
-            case R.id.button_backspace:
-                textView.setText(textView.getText().length() > 1 && (textView.getText().length() > 2 || !textView.getText().toString().substring(0, 1).equals("-")) ? textView.getText().toString().substring(0, textView.getText().length() - 1) : "0");
-                numbersOnDisplay--;
-                break;
-            case R.id.button_c:
-                textView.setText("0");
-                numbersOnDisplay = 0;
-                break;
-            case R.id.button_changeSign:
-                if (!textView.getText().equals("0")) {
-                    textView.setText(textView.getText().toString().substring(0, 1).equals("-") ? textView.getText().toString().substring(1, textView.getText().length()) : "-" + textView.getText());
-                }
-                break;
-            case R.id.button_add:
-                switch (mathLastOperationDone) {
-                    case "=":
-                    case "+":
-                    case "no operator yet":
-                        mathOperation("+");
-                        break;
-                    case "-":
-                        mathOperation("-");
-                        mathOperation("+");
-                        break;
-                    case "/":
-                        mathOperation("/");
-                        mathOperation("+");
-                        break;
-                    case "*":
-                        mathOperation("*");
-                        mathOperation("+");
-                        break;
-                }
-                break;
-            case R.id.button_divide:
-                switch (mathLastOperationDone) {
-                    case "=":
-                    case "/":
-                    case "no operator yet":
-                        mathOperation("/");
-                        break;
-                    case "-":
-                        mathOperation("-");
-                        mathOperation("/");
-                        break;
-                    case "+":
-                        mathOperation("+");
-                        mathOperation("/");
-                        break;
-                    case "*":
-                        mathOperation("*");
-                        mathOperation("/");
-                        break;
-                }
-                break;
-            case R.id.button_multiply:
-                switch (mathLastOperationDone) {
-                    case "=":
-                    case "*":
-                    case "no operator yet":
-                        mathOperation("*");
-                        break;
-                    case "-":
-                        mathOperation("-");
-                        mathOperation("*");
-                        break;
-                    case "/":
-                        mathOperation("/");
-                        mathOperation("*");
-                        break;
-                    case "+":
-                        mathOperation("+");
-                        mathOperation("*");
-                        break;
-                }
-                break;
-            case R.id.button_subtract:
-                switch (mathLastOperationDone) {
-                    case "=":
-                    case "-":
-                    case "no operator yet":
-                        mathOperation("-");
-                        break;
-                    case "+":
-                        mathOperation("+");
-                        mathOperation("-");
-                        break;
-                    case "/":
-                        mathOperation("/");
-                        mathOperation("-");
-                        break;
-                    case "*":
-                        mathOperation("*");
-                        mathOperation("-");
-                        break;
-                }
-                break;
-            case R.id.button_equals:
-                if (isInputTyped) {
-                    mathOperatorEquals(mathLastOperationPressed, true);
-                }
-                break;
-            case R.id.button_ce:
-                textView.setText("0");
-                numbersOnDisplay = 0;
-                isInputTyped = true;
-                firstInput = 0;
-                mathLastOperationDone = "no operator yet";
-                mathLastOperationPressed = "no operator yet";
-                break;
-        }
-    }
-
     private void mathOperatorEquals(String operator, Boolean isPressedButtonEquals) {
 
         if (operator.equals("+")) {
@@ -392,64 +157,259 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    public void onButtonClick0(View view) {
-    }
+////////////////////////Start Button Methods/////////////////////
 
     public void onButtonClickCE(View view) {
+        textView.setText("0");
+        numbersOnDisplay = 0;
+        isInputTyped = true;
+        firstInput = 0;
+        mathLastOperationDone = "no operator yet";
+        mathLastOperationPressed = "no operator yet";
     }
 
     public void onButtonClickC(View view) {
+        textView.setText("0");
+        numbersOnDisplay = 0;
     }
 
     public void onButtonClickBackspace(View view) {
+        textView.setText(textView.getText().length() > 1 && (textView.getText().length() > 2 || !textView.getText().toString().substring(0, 1).equals("-")) ? textView.getText().toString().substring(0, textView.getText().length() - 1) : "0");
+        numbersOnDisplay--;
     }
 
     public void onButtonClickChangeSign(View view) {
+        if (!textView.getText().equals("0")) {
+            textView.setText(textView.getText().toString().substring(0, 1).equals("-") ? textView.getText().toString().substring(1, textView.getText().length()) : "-" + textView.getText());
+        }
     }
 
     public void onButtonClickDivide(View view) {
+        switch (mathLastOperationDone) {
+            case "=":
+            case "/":
+            case "no operator yet":
+                mathOperation("/");
+                break;
+            case "-":
+                mathOperation("-");
+                mathOperation("/");
+                break;
+            case "+":
+                mathOperation("+");
+                mathOperation("/");
+                break;
+            case "*":
+                mathOperation("*");
+                mathOperation("/");
+                break;
+        }
     }
 
     public void onButtonClickMultiply(View view) {
+        switch (mathLastOperationDone) {
+            case "=":
+            case "*":
+            case "no operator yet":
+                mathOperation("*");
+                break;
+            case "-":
+                mathOperation("-");
+                mathOperation("*");
+                break;
+            case "/":
+                mathOperation("/");
+                mathOperation("*");
+                break;
+            case "+":
+                mathOperation("+");
+                mathOperation("*");
+                break;
+        }
     }
 
     public void onButtonClickSubtract(View view) {
+        switch (mathLastOperationDone) {
+            case "=":
+            case "-":
+            case "no operator yet":
+                mathOperation("-");
+                break;
+            case "+":
+                mathOperation("+");
+                mathOperation("-");
+                break;
+            case "/":
+                mathOperation("/");
+                mathOperation("-");
+                break;
+            case "*":
+                mathOperation("*");
+                mathOperation("-");
+                break;
+        }
     }
 
     public void onButtonClickAdd(View view) {
+        switch (mathLastOperationDone) {
+            case "=":
+            case "+":
+            case "no operator yet":
+                mathOperation("+");
+                break;
+            case "-":
+                mathOperation("-");
+                mathOperation("+");
+                break;
+            case "/":
+                mathOperation("/");
+                mathOperation("+");
+                break;
+            case "*":
+                mathOperation("*");
+                mathOperation("+");
+                break;
+        }
     }
 
     public void onButtonClickEquals(View view) {
+        if (isInputTyped) {
+            mathOperatorEquals(mathLastOperationPressed, true);
+        }
+    }
+
+    public void onButtonClick0(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "0" : textView.getText() + "0");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("0");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick1(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "1" : textView.getText() + "1");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("1");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick2(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "2" : textView.getText() + "2");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("2");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick3(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "3" : textView.getText() + "3");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("3");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick4(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "4" : textView.getText() + "4");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("4");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick5(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "5" : textView.getText() + "5");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("5");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick6(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "6" : textView.getText() + "6");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("6");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick7(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "7" : textView.getText() + "7");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("7");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick8(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "8" : textView.getText() + "8");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("8");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClick9(View view) {
+        if (numbersOnDisplay < 15) {
+            textView.setText(textView.getText().equals("0") ? "9" : textView.getText() + "9");
+            numbersOnDisplay++;
+            if (!isInputTyped) {
+                textView.setText("9");
+            }
+            isInputTyped = true;
+        } else {
+            toast.show();
+        }
     }
 
     public void onButtonClickPoint(View view) {
     }
 }
+
+//////////////End Buttons Methods/////////////////
