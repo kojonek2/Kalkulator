@@ -173,13 +173,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClickBackspace(View view) {
-        textView.setText(textView.getText().length() > 1 && (textView.getText().length() > 2 || !textView.getText().toString().substring(0, 1).equals("-")) ? textView.getText().toString().substring(0, textView.getText().length() - 1) : "0");
+        if (textView.getText().length() > 1 && (textView.getText().length() > 2 || !textView.getText().toString().substring(0, 1).equals("-"))) {
+            textView.setText(textView.getText().toString().substring(0, textView.getText().length() - 1));
+        } else {
+            textView.setText("0");
+        }
         numbersOnDisplay--;
     }
 
+    @SuppressLint("SetTextI18n")
     public void onButtonClickChangeSign(View view) {
         if (!textView.getText().equals("0")) {
-            textView.setText(textView.getText().toString().substring(0, 1).equals("-") ? textView.getText().toString().substring(1, textView.getText().length()) : "-" + textView.getText());
+            if (textView.getText().toString().substring(0, 1).equals("-")) {
+                textView.setText(textView.getText().toString().substring(1, textView.getText().length()));
+            } else {
+                textView.setText("-" + textView.getText());
+            }
         }
     }
 
