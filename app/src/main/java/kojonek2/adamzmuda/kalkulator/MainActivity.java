@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.display1);
         toast = Toast.makeText(this, R.string.toastMaxDigits, Toast.LENGTH_SHORT);
         decimalFormat = new DecimalFormat("#.###############");
+        resultOfMathOperation = "0";
 
         //reading information
         if (savedInstanceState != null) {
