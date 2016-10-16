@@ -393,4 +393,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onButtonClick0(View view) {
+    }
+
+    public void onButtonClickCE(View view) {
+    }
+
+    public void onButtonClickC(View view) {
+    }
+
+    public void onButtonClickBackspace(View view) {
+    }
+
+    public void onButtonClickChangeSign(View view) {
+    }
+
+    public void onButtonClickDivide(View view) {
+    }
+
+    public void onButtonClickMultiply(View view) {
+    }
+
+    public void onButtonClickSubtract(View view) {
+    }
+
+    public void onButtonClickAdd(View view) {
+    }
+
+    public void onButtonClickEquals(View view) {
+    }
+
+    public void onButtonClick1(View view) {
+    }
+
+    public void onButtonClick2(View view) {
+    }
+
+    public void onButtonClick3(View view) {
+    }
+
+    public void onButtonClick4(View view) {
+    }
+
+    public void onButtonClick5(View view) {
+    }
+
+    public void onButtonClick6(View view) {
+    }
+
+    public void onButtonClick7(View view) {
+    }
+
+    public void onButtonClick8(View view) {
+    }
+
+    public void onButtonClick9(View view) {
+    }
+
+    public void onButtonClickPoint(View view) {
+    }
 }
