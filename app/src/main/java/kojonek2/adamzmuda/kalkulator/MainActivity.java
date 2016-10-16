@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.display1);
         toast = Toast.makeText(this, R.string.toastMaxDigits, Toast.LENGTH_SHORT);
         decimalFormat = new DecimalFormat("#.###############");
-        resultOfMathOperation = "0";
 
         //reading information
         if (savedInstanceState != null) {
@@ -77,28 +76,27 @@ public class MainActivity extends AppCompatActivity {
 
         if (operator.equals("+")) {
             resultOfMathOperation = decimalFormat.format(firstInput + Double.parseDouble(textView.getText().toString())).replace(",", ".");
-            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-            textView.setText(resultOfMathOperation);
-            isInputTyped = false;
         }
         if (operator.equals("/")) {
             resultOfMathOperation = decimalFormat.format(firstInput / Double.parseDouble(textView.getText().toString())).replace(",", ".");
-            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-            textView.setText(resultOfMathOperation);
-            isInputTyped = false;
         }
         if (operator.equals("*")) {
             resultOfMathOperation = decimalFormat.format(firstInput * Double.parseDouble(textView.getText().toString())).replace(",", ".");
-            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
-            textView.setText(resultOfMathOperation);
-            isInputTyped = false;
         }
         if (operator.equals("-")) {
             resultOfMathOperation = decimalFormat.format(firstInput - Double.parseDouble(textView.getText().toString())).replace(",", ".");
-            resultOfMathOperation = resultOfMathOperation.contains(".") ? resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16)) : resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+        }
+
+        if (!operator.equals("no operator yet")) {
+            if (resultOfMathOperation.contains(".")) {
+                resultOfMathOperation = resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 16));
+            } else {
+                resultOfMathOperation = resultOfMathOperation.substring(0, Math.min(resultOfMathOperation.length(), 15));
+            }
             textView.setText(resultOfMathOperation);
             isInputTyped = false;
         }
+
         if (isPressedButtonEquals) {
             mathLastOperationDone = "=";
         }
